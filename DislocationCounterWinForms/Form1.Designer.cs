@@ -48,6 +48,8 @@
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ResultTextLabel = new System.Windows.Forms.Label();
+            this.ResultValueLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThresholdSelector)).BeginInit();
@@ -88,7 +90,7 @@
             0,
             0,
             0});
-            this.ThresholdSelector.Location = new System.Drawing.Point(211, 3);
+            this.ThresholdSelector.Location = new System.Drawing.Point(252, 3);
             this.ThresholdSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
             this.ThresholdSelector.Maximum = new decimal(new int[] {
             255,
@@ -111,9 +113,9 @@
             this.ThresholdLabel.Location = new System.Drawing.Point(146, 4);
             this.ThresholdLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.ThresholdLabel.Name = "ThresholdLabel";
-            this.ThresholdLabel.Size = new System.Drawing.Size(59, 15);
+            this.ThresholdLabel.Size = new System.Drawing.Size(100, 15);
             this.ThresholdLabel.TabIndex = 2;
-            this.ThresholdLabel.Text = "Threshold";
+            this.ThresholdLabel.Text = "Sensitivity (0-255)";
             // 
             // menuStrip2
             // 
@@ -177,6 +179,8 @@
             this.flowLayoutPanel1.Controls.Add(this.menuStrip2);
             this.flowLayoutPanel1.Controls.Add(this.ThresholdLabel);
             this.flowLayoutPanel1.Controls.Add(this.ThresholdSelector);
+            this.flowLayoutPanel1.Controls.Add(this.ResultTextLabel);
+            this.flowLayoutPanel1.Controls.Add(this.ResultValueLabel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -257,6 +261,26 @@
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 7;
             // 
+            // ResultTextLabel
+            // 
+            this.ResultTextLabel.AutoSize = true;
+            this.ResultTextLabel.Location = new System.Drawing.Point(318, 4);
+            this.ResultTextLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
+            this.ResultTextLabel.Name = "ResultTextLabel";
+            this.ResultTextLabel.Size = new System.Drawing.Size(42, 15);
+            this.ResultTextLabel.TabIndex = 6;
+            this.ResultTextLabel.Text = "Result:";
+            // 
+            // ResultValueLabel
+            // 
+            this.ResultValueLabel.AutoSize = true;
+            this.ResultValueLabel.Location = new System.Drawing.Point(366, 4);
+            this.ResultValueLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
+            this.ResultValueLabel.Name = "ResultValueLabel";
+            this.ResultValueLabel.Size = new System.Drawing.Size(13, 15);
+            this.ResultValueLabel.TabIndex = 7;
+            this.ResultValueLabel.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -309,5 +333,7 @@
         private ToolStripMenuItem processToolStripMenuItem;
         private MenuStrip menuStrip1;
         private SplitContainer splitContainer1;
+        private Label ResultTextLabel;
+        private Label ResultValueLabel;
     }
 }
