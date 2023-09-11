@@ -1,3 +1,4 @@
+using DislocationCounterWinForms;
 using DislocationCounterWinForms.DislocationDetectionService;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -11,7 +12,6 @@ namespace DysklokacjowoWinForms
         private Image<Bgr, byte>? inputImage;
         private Image<Gray, byte>? binaryImage;
         private Image<Bgr, byte>? outputImage;
-        private int thresholdValue;
 
         public Form1(IDislocationDetectionService dislocationDetectionService)
         {
@@ -21,7 +21,7 @@ namespace DysklokacjowoWinForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            thresholdValue = 100;
+            resetSettings();
         }
 
         private void importPictureToolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace DysklokacjowoWinForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                defaultExceptionHandler(ex);
             }
         }
 
@@ -51,13 +51,12 @@ namespace DysklokacjowoWinForms
 
             try
             {
-                binaryImage = dislocationDetectionService.PreviewGrayScaleImage(inputImage, thresholdValue);
+                binaryImage = dislocationDetectionService.PreviewGrayScaleImage(inputImage, (int)thresholdSelector.Value);
                 pictureBox1.Image = binaryImage.ToBitmap();
             }
             catch (Exception ex)
             {
-
-                throw;
+                defaultExceptionHandler(ex);
             }
         }
 
@@ -69,23 +68,88 @@ namespace DysklokacjowoWinForms
             }
             this.processToolStripMenuItem_Click(sender, e);
 
-            (var numOfDislocations, outputImage) = dislocationDetectionService.CountShapes(binaryImage, outputImage);
-
+            (var numOfDislocations, outputImage) = dislocationDetectionService.CountShapes(
+                binaryImage, 
+                outputImage, 
+                (double) maxErrorSelector.Value, 
+                (double) minimumViableAreaSelector.Value, 
+                (double) maximumViableAreaSelector.Value);
 
             resultValueLabel.Text = numOfDislocations.ToString();
             pictureBox1.Image = outputImage.ToBitmap();
         }
 
-        private void ThresholdSelector_ValueChanged(object sender, EventArgs e)
+        private void minimumViableAreaSelector_ValueChanged(object sender, EventArgs e)
         {
             if (sender is null)
             {
                 return;
             }
 
-            var newValue = (sender as NumericUpDown).Value;
-            thresholdValue = Int32.Parse(newValue.ToString());
+            if (minimumViableAreaSelector.Value > maximumViableAreaSelector.Value)
+            {
+                maximumViableAreaSelector.Value = minimumViableAreaSelector.Value;
+            }
         }
 
+        private void maximumViableAreaSelector_ValueChanged(object sender, EventArgs e)
+        {
+            if (sender is null)
+            {
+                return;
+            }
+
+            if (maximumViableAreaSelector.Value < minimumViableAreaSelector.Value)
+            {
+                minimumViableAreaSelector.Value = maximumViableAreaSelector.Value;
+            }
+        }
+
+        private void resetSettingButton_Click(object sender, EventArgs e)
+        {
+            resetSettings();
+        }
+
+        private void resetSettings()
+        {
+            thresholdSelector.Value = ConfigConstants.DefaultThresholdValue;
+            maxErrorSelector.Value = ConfigConstants.DefaultMaxErrorValue;
+
+            minimumViableAreaSelector.Minimum = ConfigConstants.MinimumViableAreaValue;
+            minimumViableAreaSelector.Maximum = ConfigConstants.MaximumViableAreaValue;
+
+            maximumViableAreaSelector.Minimum = ConfigConstants.MinimumViableAreaValue;   
+            maximumViableAreaSelector.Maximum = ConfigConstants.MaximumViableAreaValue;
+
+            minimumViableAreaSelector.Value = ConfigConstants.DefaultMinViableAreaValue;
+            maximumViableAreaSelector.Value = ConfigConstants.DefaultMaxViableAreaValue;
+        }
+
+        private void defaultExceptionHandler(Exception ex)
+        {
+            MessageBox.Show(ex.Message.ToString(), "Error");
+        }
+
+        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta != 0)
+            {
+                if (e.Delta <= 0)
+                {
+                    //set minimum size to zoom
+                    if (pictureBox1.Width < 50)
+                        // lbl_Zoom.Text = pictureBox1.Image.Size; 
+                        return;
+                }
+                else
+                {
+                    //set maximum size to zoom
+                    if (pictureBox1.Width > 1000)
+                        return;
+                }
+                pictureBox1.Width += Convert.ToInt32(pictureBox1.Width * e.Delta / 1000);
+                pictureBox1.Height += Convert.ToInt32(pictureBox1.Height * e.Delta / 1000);
+            }
+        }
     }
 }

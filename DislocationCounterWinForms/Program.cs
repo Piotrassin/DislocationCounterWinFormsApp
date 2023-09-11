@@ -27,7 +27,7 @@ namespace DysklokacjowoWinForms
         {
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
-                    services.AddTransient<IDislocationDetectionService, DislocationDetectionService>();
+                    services.AddSingleton<IDislocationDetectionService, DislocationDetectionService>();
                     services.AddTransient<Form1>();
                 });
         }

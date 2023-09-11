@@ -1,4 +1,7 @@
-﻿namespace DysklokacjowoWinForms
+﻿using DislocationCounterWinForms;
+using System.Windows.Forms;
+
+namespace DysklokacjowoWinForms
 {
     partial class Form1
     {
@@ -34,6 +37,8 @@
             this.thresholdSelector = new System.Windows.Forms.NumericUpDown();
             this.thresholdLabel = new System.Windows.Forms.Label();
             this.controlPanel = new System.Windows.Forms.Panel();
+            this.maximumViableAreaSelector = new System.Windows.Forms.NumericUpDown();
+            this.maximumViableAreaLabel = new System.Windows.Forms.Label();
             this.resetSettingButton = new System.Windows.Forms.Button();
             this.minimumViableAreaSelector = new System.Windows.Forms.NumericUpDown();
             this.minimumViableAreaLabel = new System.Windows.Forms.Label();
@@ -54,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thresholdSelector)).BeginInit();
             this.controlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maximumViableAreaSelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimumViableAreaSelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxErrorSelector)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -78,7 +84,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -90,7 +96,7 @@
             0,
             0,
             0});
-            this.thresholdSelector.Location = new System.Drawing.Point(129, 5);
+            this.thresholdSelector.Location = new System.Drawing.Point(119, 5);
             this.thresholdSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
             this.thresholdSelector.Maximum = new decimal(new int[] {
             255,
@@ -98,14 +104,8 @@
             0,
             0});
             this.thresholdSelector.Name = "thresholdSelector";
-            this.thresholdSelector.Size = new System.Drawing.Size(60, 23);
+            this.thresholdSelector.Size = new System.Drawing.Size(80, 23);
             this.thresholdSelector.TabIndex = 5;
-            this.thresholdSelector.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.thresholdSelector.ValueChanged += new System.EventHandler(this.ThresholdSelector_ValueChanged);
             // 
             // thresholdLabel
             // 
@@ -120,6 +120,8 @@
             // controlPanel
             // 
             this.controlPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.controlPanel.Controls.Add(this.maximumViableAreaSelector);
+            this.controlPanel.Controls.Add(this.maximumViableAreaLabel);
             this.controlPanel.Controls.Add(this.resetSettingButton);
             this.controlPanel.Controls.Add(this.minimumViableAreaSelector);
             this.controlPanel.Controls.Add(this.minimumViableAreaLabel);
@@ -134,8 +136,47 @@
             this.controlPanel.Margin = new System.Windows.Forms.Padding(0);
             this.controlPanel.Name = "controlPanel";
             this.controlPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.controlPanel.Size = new System.Drawing.Size(195, 546);
+            this.controlPanel.Size = new System.Drawing.Size(205, 546);
             this.controlPanel.TabIndex = 10;
+            // 
+            // maximumViableAreaSelector
+            // 
+            this.maximumViableAreaSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.maximumViableAreaSelector.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.maximumViableAreaSelector.Location = new System.Drawing.Point(119, 90);
+            this.maximumViableAreaSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.maximumViableAreaSelector.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.maximumViableAreaSelector.Name = "maximumViableAreaSelector";
+            this.maximumViableAreaSelector.Size = new System.Drawing.Size(80, 23);
+            this.maximumViableAreaSelector.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.maximumViableAreaSelector, "Sets the minimum area of a shape being taken into account.\r\nHelpful if there are " +
+        "many small features that shouldn\'t be taken into account.\r\nDefault = 0,05");
+            this.maximumViableAreaSelector.Value = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.maximumViableAreaSelector.ValueChanged += new System.EventHandler(this.maximumViableAreaSelector_ValueChanged);
+            // 
+            // maximumViableAreaLabel
+            // 
+            this.maximumViableAreaLabel.AutoSize = true;
+            this.maximumViableAreaLabel.Location = new System.Drawing.Point(6, 92);
+            this.maximumViableAreaLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
+            this.maximumViableAreaLabel.Name = "maximumViableAreaLabel";
+            this.maximumViableAreaLabel.Size = new System.Drawing.Size(87, 15);
+            this.maximumViableAreaLabel.TabIndex = 12;
+            this.maximumViableAreaLabel.Text = "Maximum area";
+            this.toolTip1.SetToolTip(this.maximumViableAreaLabel, "Sets the minimum area of a shape being taken into account.\r\nHelpful if there are " +
+        "many small features that shouldn\'t be taken into account.\r\nDefault = 0,05");
             // 
             // resetSettingButton
             // 
@@ -146,38 +187,29 @@
             this.resetSettingButton.TabIndex = 1;
             this.resetSettingButton.Text = "Restore default";
             this.resetSettingButton.UseVisualStyleBackColor = true;
+            this.resetSettingButton.Click += new System.EventHandler(this.resetSettingButton_Click);
             // 
             // minimumViableAreaSelector
             // 
             this.minimumViableAreaSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minimumViableAreaSelector.DecimalPlaces = 2;
             this.minimumViableAreaSelector.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.minimumViableAreaSelector.Location = new System.Drawing.Point(129, 62);
-            this.minimumViableAreaSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
-            this.minimumViableAreaSelector.Maximum = new decimal(new int[] {
             100,
             0,
             0,
-            131072});
-            this.minimumViableAreaSelector.Minimum = new decimal(new int[] {
-            1,
+            0});
+            this.minimumViableAreaSelector.Location = new System.Drawing.Point(119, 62);
+            this.minimumViableAreaSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.minimumViableAreaSelector.Maximum = new decimal(new int[] {
+            999999,
             0,
             0,
-            131072});
+            0});
             this.minimumViableAreaSelector.Name = "minimumViableAreaSelector";
-            this.minimumViableAreaSelector.Size = new System.Drawing.Size(60, 23);
+            this.minimumViableAreaSelector.Size = new System.Drawing.Size(80, 23);
             this.minimumViableAreaSelector.TabIndex = 11;
             this.toolTip1.SetToolTip(this.minimumViableAreaSelector, "Sets the minimum area of a shape being taken into account.\r\nHelpful if there are " +
         "many small features that shouldn\'t be taken into account.\r\nDefault = 0,05");
-            this.minimumViableAreaSelector.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
+            this.minimumViableAreaSelector.ValueChanged += new System.EventHandler(this.minimumViableAreaSelector_ValueChanged);
             // 
             // minimumViableAreaLabel
             // 
@@ -194,7 +226,7 @@
             // resultValueLabel
             // 
             this.resultValueLabel.AutoSize = true;
-            this.resultValueLabel.Location = new System.Drawing.Point(54, 88);
+            this.resultValueLabel.Location = new System.Drawing.Point(57, 201);
             this.resultValueLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.resultValueLabel.Name = "resultValueLabel";
             this.resultValueLabel.Size = new System.Drawing.Size(13, 15);
@@ -204,7 +236,7 @@
             // resultTextLabel
             // 
             this.resultTextLabel.AutoSize = true;
-            this.resultTextLabel.Location = new System.Drawing.Point(6, 88);
+            this.resultTextLabel.Location = new System.Drawing.Point(9, 201);
             this.resultTextLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
             this.resultTextLabel.Name = "resultTextLabel";
             this.resultTextLabel.Size = new System.Drawing.Size(42, 15);
@@ -220,10 +252,10 @@
             0,
             0,
             131072});
-            this.maxErrorSelector.Location = new System.Drawing.Point(129, 33);
+            this.maxErrorSelector.Location = new System.Drawing.Point(119, 33);
             this.maxErrorSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
             this.maxErrorSelector.Maximum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             131072});
@@ -233,12 +265,12 @@
             0,
             131072});
             this.maxErrorSelector.Name = "maxErrorSelector";
-            this.maxErrorSelector.Size = new System.Drawing.Size(60, 23);
+            this.maxErrorSelector.Size = new System.Drawing.Size(80, 23);
             this.maxErrorSelector.TabIndex = 9;
             this.toolTip1.SetToolTip(this.maxErrorSelector, "Higher value = more shapes with less distinct shapes are taken into account\r\nLowe" +
         "r value = only distinct shapes will be taken into account.\r\nDefault = 0,05\r\n");
             this.maxErrorSelector.Value = new decimal(new int[] {
-            5,
+            2,
             0,
             0,
             131072});
@@ -336,7 +368,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Dyslokacjowo";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pictureViewportPanel.ResumeLayout(false);
             this.pictureViewportPanel.PerformLayout();
@@ -344,6 +376,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.thresholdSelector)).EndInit();
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maximumViableAreaSelector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimumViableAreaSelector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxErrorSelector)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -377,5 +410,7 @@
         private Panel panel3;
         private ToolStripMenuItem countDislocationsToolStripMenuItem;
         private Button resetSettingButton;
+        private NumericUpDown maximumViableAreaSelector;
+        private Label maximumViableAreaLabel;
     }
 }
