@@ -32,7 +32,6 @@ namespace DysklokacjowoWinForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pictureViewportPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.thresholdSelector = new System.Windows.Forms.NumericUpDown();
             this.thresholdLabel = new System.Windows.Forms.Label();
@@ -55,7 +54,6 @@ namespace DysklokacjowoWinForms
             this.countDislocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureViewportPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thresholdSelector)).BeginInit();
             this.controlPanel.SuspendLayout();
@@ -66,25 +64,13 @@ namespace DysklokacjowoWinForms
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureViewportPanel
-            // 
-            this.pictureViewportPanel.AutoScroll = true;
-            this.pictureViewportPanel.AutoScrollMargin = new System.Drawing.Size(5, 5);
-            this.pictureViewportPanel.AutoSize = true;
-            this.pictureViewportPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureViewportPanel.Controls.Add(this.pictureBox1);
-            this.pictureViewportPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureViewportPanel.Location = new System.Drawing.Point(0, 0);
-            this.pictureViewportPanel.Name = "pictureViewportPanel";
-            this.pictureViewportPanel.Size = new System.Drawing.Size(946, 546);
-            this.pictureViewportPanel.TabIndex = 1;
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(205, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(741, 546);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -351,8 +337,8 @@ namespace DysklokacjowoWinForms
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.controlPanel);
-            this.panel3.Controls.Add(this.pictureViewportPanel);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 24);
             this.panel3.Name = "panel3";
@@ -370,8 +356,6 @@ namespace DysklokacjowoWinForms
             this.Name = "Form1";
             this.Text = "Dyslokacjowo";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.pictureViewportPanel.ResumeLayout(false);
-            this.pictureViewportPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thresholdSelector)).EndInit();
             this.controlPanel.ResumeLayout(false);
@@ -382,14 +366,12 @@ namespace DysklokacjowoWinForms
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private Panel pictureViewportPanel;
         private PictureBox pictureBox1;
         private Label thresholdLabel;
         private NumericUpDown thresholdSelector;
