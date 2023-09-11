@@ -19,7 +19,7 @@ namespace DysklokacjowoWinForms
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
 
-            Application.Run(ServiceProvider.GetRequiredService<Form1>());
+            Application.Run(ServiceProvider.GetRequiredService<MainWindow>());
         }
 
         public static IServiceProvider ServiceProvider { get; private set; }
@@ -28,7 +28,7 @@ namespace DysklokacjowoWinForms
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
                     services.AddSingleton<IDislocationDetectionService, DislocationDetectionService>();
-                    services.AddTransient<Form1>();
+                    services.AddTransient<MainWindow>();
                 });
         }
     }

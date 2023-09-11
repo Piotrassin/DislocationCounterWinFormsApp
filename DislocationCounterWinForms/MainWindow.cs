@@ -5,7 +5,7 @@ using Emgu.CV.Structure;
 
 namespace DysklokacjowoWinForms
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         private readonly IDislocationDetectionService dislocationDetectionService;
 
@@ -13,7 +13,7 @@ namespace DysklokacjowoWinForms
         private Image<Gray, byte>? binaryImage;
         private Image<Bgr, byte>? outputImage;
 
-        public Form1(IDislocationDetectionService dislocationDetectionService)
+        public MainWindow(IDislocationDetectionService dislocationDetectionService)
         {
             InitializeComponent();
             this.dislocationDetectionService = dislocationDetectionService;
@@ -72,23 +72,6 @@ namespace DysklokacjowoWinForms
             pictureBox1.Image = outputImage.ToBitmap();
         }
 
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp;|All Files (*.*)|*.*;";
-                if (dialog.ShowDialog() is DialogResult.OK)
-                {
-                    inputImage = new Image<Bgr, byte>(dialog.FileName);
-                    pictureBox1.Image = inputImage.ToBitmap();
-                }
-            }
-            catch (Exception ex)
-            {
-                defaultExceptionHandler(ex);
-            }
-        }
         private void resetSettingButton_Click(object sender, EventArgs e)
         {
             resetSettings();
@@ -112,6 +95,31 @@ namespace DysklokacjowoWinForms
 
             minimumViableAreaSelector.Value = ConfigConstants.DefaultMinViableAreaValue;
             maximumViableAreaSelector.Value = ConfigConstants.DefaultMaxViableAreaValue;
+        }
+
+        private void importPictureButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp;|All Files (*.*)|*.*;";
+                if (dialog.ShowDialog() is DialogResult.OK)
+                {
+                    inputImage = new Image<Bgr, byte>(dialog.FileName);
+                    pictureBox1.Image = inputImage.ToBitmap();
+                }
+            }
+            catch (Exception ex)
+            {
+                defaultExceptionHandler(ex);
+            }
+
+            
+        }
+
+        private void scaleInputDialogBox()
+        {
+
         }
     }
 }
