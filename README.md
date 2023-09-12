@@ -1,6 +1,10 @@
+
+#[How to install?](how-to-install)
+
 # DislocationCounterWinFormsApp
 Simple WinForms program for counting the rough number of dark features in images using the EmguCV library.
-### Keep in mind that the idea behind the program is to approximate the number of shapes in a picture and the calculations may not be exact. 
+### Disclaimer
+Keep in mind that the idea behind the program is to approximate the number of shapes in a picture and the calculations may not be exact. 
 
 #### Known limitations as of writing (12.09.2023)
 - interlocking shapes are counted as one.
@@ -49,5 +53,22 @@ When checked, automatically displayes the preview based on current Sensitivity s
 Those settings control the lower and upper boundaries of shapes taken into account when counting. It can be helpful if there are small or large features which weren't removed by the Sensitivity setting and they shouldn't be counted.
 ![shapeRecognitionDemo_MinMaxArea](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/5c3d9f5b-289e-4f87-ab51-d8572ae9a2a3)
 
+
+
+
+# ===================================
+# How to install?
+1. Go to the "Releases" section
+
+![obraz](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/9fadd3d5-3a8b-42fc-acb4-e7711e21d526)
+
+2. Download the latest zip file with the version number
+![obraz](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/ca9548f0-b43e-4c2e-8ec0-9e9265e87e87)
+
+3. Unpack the archive (7zip)
+4. Run the "setup.exe" on the first run, quick installation will take place.
+5. On all subsequent runs you can use either the "setup.exe" or the "DislocationCounterWinForms.application"
+
+![obraz](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/e464de32-cb6b-44b3-a999-24cab78d4072)
 
 
