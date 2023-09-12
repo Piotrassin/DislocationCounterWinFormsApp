@@ -43,6 +43,9 @@ namespace DysklokacjowoWinForms
             this.label4 = new System.Windows.Forms.Label();
             this.resultValueLabel = new System.Windows.Forms.Label();
             this.resultTextLabel = new System.Windows.Forms.Label();
+            this.checkBoxControlPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.autoPreviewCheckBox = new System.Windows.Forms.CheckBox();
             this.maxAreaControlPanel = new System.Windows.Forms.Panel();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,10 +55,6 @@ namespace DysklokacjowoWinForms
             this.minimumViableAreaSelector = new System.Windows.Forms.NumericUpDown();
             this.minimumViableAreaLabel = new System.Windows.Forms.Label();
             this.resetSettingButton = new System.Windows.Forms.Button();
-            this.maxErrorControlPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.maxErrorSelector = new System.Windows.Forms.NumericUpDown();
-            this.maxErrorLabel = new System.Windows.Forms.Label();
             this.sensitivityControlPanel = new System.Windows.Forms.Panel();
             this.importPictureButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -64,13 +63,12 @@ namespace DysklokacjowoWinForms
             ((System.ComponentModel.ISupportInitialize)(this.thresholdSelector)).BeginInit();
             this.controlPanel.SuspendLayout();
             this.resultControlPanel.SuspendLayout();
+            this.checkBoxControlPanel.SuspendLayout();
             this.maxAreaControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maximumViableAreaSelector)).BeginInit();
             this.minAreaControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimumViableAreaSelector)).BeginInit();
-            this.maxErrorControlPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.maxErrorSelector)).BeginInit();
             this.sensitivityControlPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +97,7 @@ namespace DysklokacjowoWinForms
             this.thresholdSelector.Size = new System.Drawing.Size(80, 23);
             this.thresholdSelector.TabIndex = 5;
             this.toolTip1.SetToolTip(this.thresholdSelector, resources.GetString("thresholdSelector.ToolTip"));
+            this.thresholdSelector.ValueChanged += new System.EventHandler(this.thresholdSelector_ValueChanged);
             // 
             // thresholdLabel
             // 
@@ -118,10 +117,10 @@ namespace DysklokacjowoWinForms
             this.controlPanel.Controls.Add(this.countShapesButton);
             this.controlPanel.Controls.Add(this.previewFilteredShapesButton);
             this.controlPanel.Controls.Add(this.resultControlPanel);
+            this.controlPanel.Controls.Add(this.checkBoxControlPanel);
             this.controlPanel.Controls.Add(this.maxAreaControlPanel);
             this.controlPanel.Controls.Add(this.minAreaControlPanel);
             this.controlPanel.Controls.Add(this.resetSettingButton);
-            this.controlPanel.Controls.Add(this.maxErrorControlPanel);
             this.controlPanel.Controls.Add(this.sensitivityControlPanel);
             this.controlPanel.Controls.Add(this.importPictureButton);
             this.controlPanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -152,8 +151,8 @@ namespace DysklokacjowoWinForms
             this.previewFilteredShapesButton.Size = new System.Drawing.Size(195, 23);
             this.previewFilteredShapesButton.TabIndex = 21;
             this.previewFilteredShapesButton.Text = "Preview Filtered Shapes";
-            this.toolTip1.SetToolTip(this.previewFilteredShapesButton, "Displays the preview of filtered shapes based on their brightness. Shapes coloute" +
-        "d in white are used in further steps. Black pixels are ignored.");
+            this.toolTip1.SetToolTip(this.previewFilteredShapesButton, "Displays the preview of filtered shapes based on their brightness. \r\nShapes colou" +
+        "red in white are used in further steps. Black pixels are ignored.");
             this.previewFilteredShapesButton.UseVisualStyleBackColor = true;
             this.previewFilteredShapesButton.Click += new System.EventHandler(this.previewFilteredShapesButton_Click);
             // 
@@ -203,6 +202,42 @@ namespace DysklokacjowoWinForms
             this.resultTextLabel.Text = "Result:";
             this.toolTip1.SetToolTip(this.resultTextLabel, "Displays the number of shapes counted based on above criteria.");
             // 
+            // checkBoxControlPanel
+            // 
+            this.checkBoxControlPanel.Controls.Add(this.label1);
+            this.checkBoxControlPanel.Controls.Add(this.autoPreviewCheckBox);
+            this.checkBoxControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.checkBoxControlPanel.Location = new System.Drawing.Point(5, 115);
+            this.checkBoxControlPanel.Name = "checkBoxControlPanel";
+            this.checkBoxControlPanel.Size = new System.Drawing.Size(195, 29);
+            this.checkBoxControlPanel.TabIndex = 21;
+            this.toolTip1.SetToolTip(this.checkBoxControlPanel, "Automatically displays the preview of filtered shapes after each Sensitivity sett" +
+        "ing change.\r\n");
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, -177);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(2);
+            this.label1.Size = new System.Drawing.Size(104, 19);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Sensitivity (0-255)";
+            // 
+            // autoPreviewCheckBox
+            // 
+            this.autoPreviewCheckBox.AutoSize = true;
+            this.autoPreviewCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.autoPreviewCheckBox.Name = "autoPreviewCheckBox";
+            this.autoPreviewCheckBox.Size = new System.Drawing.Size(96, 19);
+            this.autoPreviewCheckBox.TabIndex = 8;
+            this.autoPreviewCheckBox.Text = "Auto Preview";
+            this.toolTip1.SetToolTip(this.autoPreviewCheckBox, "Automatically displays the preview of filtered shapes after each Sensitivity sett" +
+        "ing change.\r\n");
+            this.autoPreviewCheckBox.UseVisualStyleBackColor = true;
+            // 
             // maxAreaControlPanel
             // 
             this.maxAreaControlPanel.Controls.Add(this.numericUpDown3);
@@ -210,7 +245,7 @@ namespace DysklokacjowoWinForms
             this.maxAreaControlPanel.Controls.Add(this.maximumViableAreaSelector);
             this.maxAreaControlPanel.Controls.Add(this.maximumViableAreaLabel);
             this.maxAreaControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.maxAreaControlPanel.Location = new System.Drawing.Point(5, 115);
+            this.maxAreaControlPanel.Location = new System.Drawing.Point(5, 86);
             this.maxAreaControlPanel.Name = "maxAreaControlPanel";
             this.maxAreaControlPanel.Size = new System.Drawing.Size(195, 29);
             this.maxAreaControlPanel.TabIndex = 19;
@@ -292,7 +327,7 @@ namespace DysklokacjowoWinForms
             this.minAreaControlPanel.Controls.Add(this.minimumViableAreaSelector);
             this.minAreaControlPanel.Controls.Add(this.minimumViableAreaLabel);
             this.minAreaControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.minAreaControlPanel.Location = new System.Drawing.Point(5, 86);
+            this.minAreaControlPanel.Location = new System.Drawing.Point(5, 57);
             this.minAreaControlPanel.Name = "minAreaControlPanel";
             this.minAreaControlPanel.Size = new System.Drawing.Size(195, 29);
             this.minAreaControlPanel.TabIndex = 18;
@@ -345,75 +380,6 @@ namespace DysklokacjowoWinForms
             this.resetSettingButton.UseVisualStyleBackColor = true;
             this.resetSettingButton.Click += new System.EventHandler(this.resetSettingButton_Click);
             // 
-            // maxErrorControlPanel
-            // 
-            this.maxErrorControlPanel.Controls.Add(this.label1);
-            this.maxErrorControlPanel.Controls.Add(this.maxErrorSelector);
-            this.maxErrorControlPanel.Controls.Add(this.maxErrorLabel);
-            this.maxErrorControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.maxErrorControlPanel.Location = new System.Drawing.Point(5, 57);
-            this.maxErrorControlPanel.Name = "maxErrorControlPanel";
-            this.maxErrorControlPanel.Size = new System.Drawing.Size(195, 29);
-            this.maxErrorControlPanel.TabIndex = 17;
-            this.toolTip1.SetToolTip(this.maxErrorControlPanel, "Higher value = less pronounced and more blurry shapes are used.\r\nLower value = on" +
-        "ly distinct and clear shapes are be used.\r\n");
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, -33);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(2);
-            this.label1.Size = new System.Drawing.Size(104, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Sensitivity (0-255)";
-            // 
-            // maxErrorSelector
-            // 
-            this.maxErrorSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maxErrorSelector.DecimalPlaces = 2;
-            this.maxErrorSelector.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.maxErrorSelector.Location = new System.Drawing.Point(115, 2);
-            this.maxErrorSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
-            this.maxErrorSelector.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.maxErrorSelector.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.maxErrorSelector.Name = "maxErrorSelector";
-            this.maxErrorSelector.Size = new System.Drawing.Size(80, 23);
-            this.maxErrorSelector.TabIndex = 9;
-            this.toolTip1.SetToolTip(this.maxErrorSelector, "Higher value = less pronounced and more blurry shapes are used.\r\nLower value = on" +
-        "ly distinct and clear shapes are be used.\r\n");
-            this.maxErrorSelector.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            // 
-            // maxErrorLabel
-            // 
-            this.maxErrorLabel.AutoSize = true;
-            this.maxErrorLabel.Location = new System.Drawing.Point(3, 5);
-            this.maxErrorLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.maxErrorLabel.Name = "maxErrorLabel";
-            this.maxErrorLabel.Size = new System.Drawing.Size(104, 15);
-            this.maxErrorLabel.TabIndex = 8;
-            this.maxErrorLabel.Text = "Max. Error (0,01-1)";
-            this.toolTip1.SetToolTip(this.maxErrorLabel, "Higher value = less pronounced and more blurry shapes are used.\r\nLower value = on" +
-        "ly distinct and clear shapes are be used.\r\n");
-            // 
             // sensitivityControlPanel
             // 
             this.sensitivityControlPanel.Controls.Add(this.thresholdSelector);
@@ -453,14 +419,14 @@ namespace DysklokacjowoWinForms
             this.panel3.Size = new System.Drawing.Size(1013, 629);
             this.panel3.TabIndex = 8;
             // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 629);
             this.Controls.Add(this.panel3);
             this.MinimumSize = new System.Drawing.Size(480, 300);
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "Dyslokacjowo";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -468,6 +434,8 @@ namespace DysklokacjowoWinForms
             this.controlPanel.ResumeLayout(false);
             this.resultControlPanel.ResumeLayout(false);
             this.resultControlPanel.PerformLayout();
+            this.checkBoxControlPanel.ResumeLayout(false);
+            this.checkBoxControlPanel.PerformLayout();
             this.maxAreaControlPanel.ResumeLayout(false);
             this.maxAreaControlPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
@@ -475,9 +443,6 @@ namespace DysklokacjowoWinForms
             this.minAreaControlPanel.ResumeLayout(false);
             this.minAreaControlPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimumViableAreaSelector)).EndInit();
-            this.maxErrorControlPanel.ResumeLayout(false);
-            this.maxErrorControlPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.maxErrorSelector)).EndInit();
             this.sensitivityControlPanel.ResumeLayout(false);
             this.sensitivityControlPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -491,8 +456,6 @@ namespace DysklokacjowoWinForms
         private NumericUpDown thresholdSelector;
         private Label resultTextLabel;
         private Label resultValueLabel;
-        private Label maxErrorLabel;
-        private NumericUpDown maxErrorSelector;
         private ToolTip toolTip1;
         private Panel controlPanel;
         private NumericUpDown minimumViableAreaSelector;
@@ -506,12 +469,13 @@ namespace DysklokacjowoWinForms
         private NumericUpDown numericUpDown3;
         private Label label3;
         private Panel minAreaControlPanel;
-        private Panel maxErrorControlPanel;
         private Label label1;
         private Button countShapesButton;
         private Button previewFilteredShapesButton;
         private Panel resultControlPanel;
         private Label label4;
         private Button importPictureButton;
+        private Panel checkBoxControlPanel;
+        private CheckBox autoPreviewCheckBox;
     }
 }

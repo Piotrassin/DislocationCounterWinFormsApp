@@ -64,7 +64,6 @@ namespace DysklokacjowoWinForms
             (var numOfDislocations, outputImage) = dislocationDetectionService.CountShapes(
                 binaryImage,
                 outputImage,
-                (double)maxErrorSelector.Value,
                 (double)minimumViableAreaSelector.Value,
                 (double)maximumViableAreaSelector.Value);
 
@@ -85,7 +84,6 @@ namespace DysklokacjowoWinForms
         private void resetSettings()
         {
             thresholdSelector.Value = ConfigConstants.DefaultThresholdValue;
-            maxErrorSelector.Value = ConfigConstants.DefaultMaxErrorValue;
 
             minimumViableAreaSelector.Minimum = ConfigConstants.MinimumViableAreaValue;
             minimumViableAreaSelector.Maximum = ConfigConstants.MaximumViableAreaValue;
@@ -120,6 +118,14 @@ namespace DysklokacjowoWinForms
         private void scaleInputDialogBox()
         {
 
+        }
+
+        private void thresholdSelector_ValueChanged(object sender, EventArgs e)
+        {
+            if (autoPreviewCheckBox.Checked)
+            {
+                previewFilteredShapesButton_Click(sender, e);
+            }
         }
     }
 }
