@@ -1,5 +1,5 @@
 
-#[How to install?](how-to-install)
+#[How to install?](https://github.com/Piotrassin/DislocationCounterWinFormsApp/blob/master/README.md#how-to-install)
 
 # DislocationCounterWinFormsApp
 Simple WinForms program for counting the rough number of dark features in images using the EmguCV library.
