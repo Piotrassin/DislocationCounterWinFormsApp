@@ -13,32 +13,30 @@ Keep in mind that the idea behind the program is to approximate the number of sh
 ## How to use it?
 The program has a panel with various settings on the left and a main area for the picture preview in the middle-right.
 Settings can be adjusted either by clicking on the up/down arrows to the right of the field for fine tuning or by hovering a cursor and using the mouse wheel.
-![shapeRecognitionDemo_ControlInputOptions](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/b7331835-1744-49ab-b747-416037ba833f)
+![shapeRecognitionDemo_ControlInputOptions](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/853217a8-c571-4f5c-9078-6c4eb4d50821)
 
 If you're not sure what a given setting or button does exactly, there is a short description (tooltip) which appears after hovering the mouse over it.
-![shapeRecognitionDemo_Tooltips](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/f8211cdb-ca38-40a8-af7f-79a931aaa9a6)
-
-![obraz](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/11a8ec8e-59a8-4703-8a77-5dbbbb74df4f)
+![shapeRecognitionDemo_Tooltips](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/2d16633d-fd1d-42b4-af5b-3a0e7bd6d883)
 
 ## 1. Start from importing the picture you want. 
-![shapeRecognitionDemo_PictureImport](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/3fc265cc-0b2c-4b0e-b344-9218e556bac8)
+![shapeRecognitionDemo_PictureImport](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/ce2f2bc8-0240-4d3f-a44c-52f942ce7c97)
 
-## 2. Imported picture is displayed on the right. 
+
+Imported picture is displayed on the right. 
 Now you can click either of the "Preview Filtered Shapes" if you only want to see the preview of pixels split based on the Sensitivity setting (more below) or "Count Shapes" buttons to jump straight to the result. 
 If the number of counted shapes is not correct, you can tweak the settings. 
-![obraz](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/dc11163d-e14a-46e7-a9ff-f0bdece5a629)
 
-## 3. Tweak the settings for the best result
+## 2. Tweak the settings for the best result
 ### Counting the shapes
 Counted shapes have perimeters highlighed in red so it can be easily seen which ones are taken into account and which ones are ignored.
-![obraz](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/499b0385-e14a-4684-9300-5786cb798c40)
+![shapeRecognitionDemo_RedOutline](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/e89b4229-c805-44c1-9c5b-7cd3c118d8ca)
 
 ### Sensitivity
 Pixels in the picture are split into two groups based on their brightness. One group coloured in white is the group of pixels which will be processed in further steps. 
 Other group coloured in black represents the ignored pixels. Sensitivity ranges from 0 to 255 and determines the threshold between the groups.
 The higher the value, more and more brighter pixels will be put into the white group. 
 The lower the value, more pixels will be ignored and only the darkest ones will stay in the approved group.
-![obraz](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/66c42b55-fbd9-4256-afdd-de3b918e7d7d)
+![shapeRecognitionDemo_SensitivitySettings](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/c0f68d2e-419a-4d89-bd1d-d97e6ef50b82)
 
 Here you can see a comparison of different sensitivity settings
 - too low (details are lost)
@@ -47,11 +45,12 @@ Here you can see a comparison of different sensitivity settings
 
 ### AutoPreview
 When checked, automatically displayes the preview based on current Sensitivity setting.
-![shapeRecognitionDemo_AutoPreview](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/00f57088-5c2f-44cf-a528-ac038be42462)
+![shapeRecognitionDemo_AutoPreview](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/09c19308-d678-4608-b6e2-1e90bf57f251)
+
 
 ### Minimum and Maximum Area
 Those settings control the lower and upper boundaries of shapes taken into account when counting. It can be helpful if there are small or large features which weren't removed by the Sensitivity setting and they shouldn't be counted.
-![shapeRecognitionDemo_MinMaxArea](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/5c3d9f5b-289e-4f87-ab51-d8572ae9a2a3)
+![shapeRecognitionDemo_MinMaxArea](https://github.com/Piotrassin/DislocationCounterWinFormsApp/assets/45977051/3376c4c7-b84e-4478-a5b8-2bc7fb2c0209)
 
 
 
