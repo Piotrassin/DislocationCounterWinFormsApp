@@ -31,427 +31,440 @@ namespace DysklokacjowoWinForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.thresholdSelector = new System.Windows.Forms.NumericUpDown();
-            this.thresholdLabel = new System.Windows.Forms.Label();
-            this.controlPanel = new System.Windows.Forms.Panel();
-            this.countShapesButton = new System.Windows.Forms.Button();
-            this.previewFilteredShapesButton = new System.Windows.Forms.Button();
-            this.resultControlPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.resultValueLabel = new System.Windows.Forms.Label();
-            this.resultTextLabel = new System.Windows.Forms.Label();
-            this.checkBoxControlPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.autoPreviewCheckBox = new System.Windows.Forms.CheckBox();
-            this.maxAreaControlPanel = new System.Windows.Forms.Panel();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.maximumViableAreaSelector = new System.Windows.Forms.NumericUpDown();
-            this.maximumViableAreaLabel = new System.Windows.Forms.Label();
-            this.minAreaControlPanel = new System.Windows.Forms.Panel();
-            this.minimumViableAreaSelector = new System.Windows.Forms.NumericUpDown();
-            this.minimumViableAreaLabel = new System.Windows.Forms.Label();
-            this.resetSettingButton = new System.Windows.Forms.Button();
-            this.sensitivityControlPanel = new System.Windows.Forms.Panel();
-            this.importPictureButton = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdSelector)).BeginInit();
-            this.controlPanel.SuspendLayout();
-            this.resultControlPanel.SuspendLayout();
-            this.checkBoxControlPanel.SuspendLayout();
-            this.maxAreaControlPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maximumViableAreaSelector)).BeginInit();
-            this.minAreaControlPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.minimumViableAreaSelector)).BeginInit();
-            this.sensitivityControlPanel.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.SuspendLayout();
+            originalPictureBox = new PictureBox();
+            thresholdSelector = new NumericUpDown();
+            thresholdLabel = new Label();
+            controlPanel = new Panel();
+            countShapesButton = new Button();
+            previewFilteredShapesButton = new Button();
+            resultControlPanel = new Panel();
+            label4 = new Label();
+            resultValueLabel = new Label();
+            resultTextLabel = new Label();
+            checkBoxControlPanel = new Panel();
+            label1 = new Label();
+            autoPreviewCheckBox = new CheckBox();
+            maxAreaControlPanel = new Panel();
+            numericUpDown3 = new NumericUpDown();
+            label3 = new Label();
+            maximumViableAreaSelector = new NumericUpDown();
+            maximumViableAreaLabel = new Label();
+            minAreaControlPanel = new Panel();
+            minimumViableAreaSelector = new NumericUpDown();
+            minimumViableAreaLabel = new Label();
+            resetSettingButton = new Button();
+            sensitivityControlPanel = new Panel();
+            importPictureButton = new Button();
+            toolTip1 = new ToolTip(components);
+            panel3 = new Panel();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            processedPictureBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)originalPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)thresholdSelector).BeginInit();
+            controlPanel.SuspendLayout();
+            resultControlPanel.SuspendLayout();
+            checkBoxControlPanel.SuspendLayout();
+            maxAreaControlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)maximumViableAreaSelector).BeginInit();
+            minAreaControlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)minimumViableAreaSelector).BeginInit();
+            sensitivityControlPanel.SuspendLayout();
+            panel3.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)processedPictureBox).BeginInit();
+            SuspendLayout();
             // 
-            // pictureBox1
+            // originalPictureBox
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(205, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(808, 629);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            originalPictureBox.Dock = DockStyle.Fill;
+            originalPictureBox.Location = new Point(3, 3);
+            originalPictureBox.Name = "originalPictureBox";
+            originalPictureBox.Size = new Size(794, 595);
+            originalPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            originalPictureBox.TabIndex = 0;
+            originalPictureBox.TabStop = false;
             // 
             // thresholdSelector
             // 
-            this.thresholdSelector.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.thresholdSelector.Location = new System.Drawing.Point(115, 3);
-            this.thresholdSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
-            this.thresholdSelector.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.thresholdSelector.Name = "thresholdSelector";
-            this.thresholdSelector.Size = new System.Drawing.Size(80, 23);
-            this.thresholdSelector.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.thresholdSelector, resources.GetString("thresholdSelector.ToolTip"));
-            this.thresholdSelector.ValueChanged += new System.EventHandler(this.thresholdSelector_ValueChanged);
+            thresholdSelector.Anchor = AnchorStyles.Right;
+            thresholdSelector.Location = new Point(115, 3);
+            thresholdSelector.Margin = new Padding(3, 3, 3, 2);
+            thresholdSelector.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            thresholdSelector.Name = "thresholdSelector";
+            thresholdSelector.Size = new Size(80, 23);
+            thresholdSelector.TabIndex = 5;
+            toolTip1.SetToolTip(thresholdSelector, resources.GetString("thresholdSelector.ToolTip"));
+            thresholdSelector.ValueChanged += thresholdSelector_ValueChanged;
             // 
             // thresholdLabel
             // 
-            this.thresholdLabel.AutoSize = true;
-            this.thresholdLabel.Location = new System.Drawing.Point(0, 3);
-            this.thresholdLabel.Margin = new System.Windows.Forms.Padding(5);
-            this.thresholdLabel.Name = "thresholdLabel";
-            this.thresholdLabel.Padding = new System.Windows.Forms.Padding(2);
-            this.thresholdLabel.Size = new System.Drawing.Size(104, 19);
-            this.thresholdLabel.TabIndex = 2;
-            this.thresholdLabel.Text = "Sensitivity (0-255)";
-            this.toolTip1.SetToolTip(this.thresholdLabel, resources.GetString("thresholdLabel.ToolTip"));
+            thresholdLabel.AutoSize = true;
+            thresholdLabel.Location = new Point(0, 3);
+            thresholdLabel.Margin = new Padding(5);
+            thresholdLabel.Name = "thresholdLabel";
+            thresholdLabel.Padding = new Padding(2);
+            thresholdLabel.Size = new Size(104, 19);
+            thresholdLabel.TabIndex = 2;
+            thresholdLabel.Text = "Sensitivity (0-255)";
+            toolTip1.SetToolTip(thresholdLabel, resources.GetString("thresholdLabel.ToolTip"));
             // 
             // controlPanel
             // 
-            this.controlPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.controlPanel.Controls.Add(this.countShapesButton);
-            this.controlPanel.Controls.Add(this.previewFilteredShapesButton);
-            this.controlPanel.Controls.Add(this.resultControlPanel);
-            this.controlPanel.Controls.Add(this.checkBoxControlPanel);
-            this.controlPanel.Controls.Add(this.maxAreaControlPanel);
-            this.controlPanel.Controls.Add(this.minAreaControlPanel);
-            this.controlPanel.Controls.Add(this.resetSettingButton);
-            this.controlPanel.Controls.Add(this.sensitivityControlPanel);
-            this.controlPanel.Controls.Add(this.importPictureButton);
-            this.controlPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.controlPanel.Location = new System.Drawing.Point(0, 0);
-            this.controlPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.controlPanel.Name = "controlPanel";
-            this.controlPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.controlPanel.Size = new System.Drawing.Size(205, 629);
-            this.controlPanel.TabIndex = 10;
+            controlPanel.BackColor = SystemColors.Control;
+            controlPanel.Controls.Add(countShapesButton);
+            controlPanel.Controls.Add(previewFilteredShapesButton);
+            controlPanel.Controls.Add(resultControlPanel);
+            controlPanel.Controls.Add(checkBoxControlPanel);
+            controlPanel.Controls.Add(maxAreaControlPanel);
+            controlPanel.Controls.Add(minAreaControlPanel);
+            controlPanel.Controls.Add(resetSettingButton);
+            controlPanel.Controls.Add(sensitivityControlPanel);
+            controlPanel.Controls.Add(importPictureButton);
+            controlPanel.Dock = DockStyle.Left;
+            controlPanel.Location = new Point(0, 0);
+            controlPanel.Margin = new Padding(0);
+            controlPanel.Name = "controlPanel";
+            controlPanel.Padding = new Padding(5);
+            controlPanel.Size = new Size(205, 629);
+            controlPanel.TabIndex = 10;
             // 
             // countShapesButton
             // 
-            this.countShapesButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.countShapesButton.Location = new System.Drawing.Point(5, 196);
-            this.countShapesButton.Name = "countShapesButton";
-            this.countShapesButton.Size = new System.Drawing.Size(195, 23);
-            this.countShapesButton.TabIndex = 22;
-            this.countShapesButton.Text = "Count Shapes";
-            this.toolTip1.SetToolTip(this.countShapesButton, "Filters and counts the shapes in one step.");
-            this.countShapesButton.UseVisualStyleBackColor = true;
-            this.countShapesButton.Click += new System.EventHandler(this.countShapesButton_Click);
+            countShapesButton.Dock = DockStyle.Top;
+            countShapesButton.Location = new Point(5, 196);
+            countShapesButton.Name = "countShapesButton";
+            countShapesButton.Size = new Size(195, 23);
+            countShapesButton.TabIndex = 22;
+            countShapesButton.Text = "Count Shapes";
+            toolTip1.SetToolTip(countShapesButton, "Filters and counts the shapes in one step.");
+            countShapesButton.UseVisualStyleBackColor = true;
+            countShapesButton.Click += countShapesButton_Click;
             // 
             // previewFilteredShapesButton
             // 
-            this.previewFilteredShapesButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.previewFilteredShapesButton.Location = new System.Drawing.Point(5, 173);
-            this.previewFilteredShapesButton.Name = "previewFilteredShapesButton";
-            this.previewFilteredShapesButton.Size = new System.Drawing.Size(195, 23);
-            this.previewFilteredShapesButton.TabIndex = 21;
-            this.previewFilteredShapesButton.Text = "Preview Filtered Shapes";
-            this.toolTip1.SetToolTip(this.previewFilteredShapesButton, "Displays the preview of filtered shapes based on their brightness. \r\nShapes colou" +
-        "red in white are used in further steps. Black pixels are ignored.");
-            this.previewFilteredShapesButton.UseVisualStyleBackColor = true;
-            this.previewFilteredShapesButton.Click += new System.EventHandler(this.previewFilteredShapesButton_Click);
+            previewFilteredShapesButton.Dock = DockStyle.Top;
+            previewFilteredShapesButton.Location = new Point(5, 173);
+            previewFilteredShapesButton.Name = "previewFilteredShapesButton";
+            previewFilteredShapesButton.Size = new Size(195, 23);
+            previewFilteredShapesButton.TabIndex = 21;
+            previewFilteredShapesButton.Text = "Preview Filtered Shapes";
+            toolTip1.SetToolTip(previewFilteredShapesButton, "Displays the preview of filtered shapes based on their brightness. \r\nShapes coloured in white are used in further steps. Black pixels are ignored.");
+            previewFilteredShapesButton.UseVisualStyleBackColor = true;
+            previewFilteredShapesButton.Click += previewFilteredShapesButton_Click;
             // 
             // resultControlPanel
             // 
-            this.resultControlPanel.Controls.Add(this.label4);
-            this.resultControlPanel.Controls.Add(this.resultValueLabel);
-            this.resultControlPanel.Controls.Add(this.resultTextLabel);
-            this.resultControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.resultControlPanel.Location = new System.Drawing.Point(5, 144);
-            this.resultControlPanel.Name = "resultControlPanel";
-            this.resultControlPanel.Size = new System.Drawing.Size(195, 29);
-            this.resultControlPanel.TabIndex = 20;
-            this.toolTip1.SetToolTip(this.resultControlPanel, "Displays the number of shapes counted based on above criteria.");
+            resultControlPanel.Controls.Add(label4);
+            resultControlPanel.Controls.Add(resultValueLabel);
+            resultControlPanel.Controls.Add(resultTextLabel);
+            resultControlPanel.Dock = DockStyle.Top;
+            resultControlPanel.Location = new Point(5, 144);
+            resultControlPanel.Name = "resultControlPanel";
+            resultControlPanel.Size = new Size(195, 29);
+            resultControlPanel.TabIndex = 20;
+            toolTip1.SetToolTip(resultControlPanel, "Displays the number of shapes counted based on above criteria.");
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(0, -141);
-            this.label4.Margin = new System.Windows.Forms.Padding(5);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(2);
-            this.label4.Size = new System.Drawing.Size(104, 19);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Sensitivity (0-255)";
+            label4.Anchor = AnchorStyles.Left;
+            label4.AutoSize = true;
+            label4.Location = new Point(0, -141);
+            label4.Margin = new Padding(5);
+            label4.Name = "label4";
+            label4.Padding = new Padding(2);
+            label4.Size = new Size(104, 19);
+            label4.TabIndex = 2;
+            label4.Text = "Sensitivity (0-255)";
             // 
             // resultValueLabel
             // 
-            this.resultValueLabel.AutoSize = true;
-            this.resultValueLabel.Location = new System.Drawing.Point(53, 4);
-            this.resultValueLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.resultValueLabel.Name = "resultValueLabel";
-            this.resultValueLabel.Size = new System.Drawing.Size(13, 15);
-            this.resultValueLabel.TabIndex = 7;
-            this.resultValueLabel.Text = "0";
-            this.toolTip1.SetToolTip(this.resultValueLabel, "Displays the number of shapes counted based on above criteria.");
+            resultValueLabel.AutoSize = true;
+            resultValueLabel.Location = new Point(53, 4);
+            resultValueLabel.Margin = new Padding(3, 4, 3, 0);
+            resultValueLabel.Name = "resultValueLabel";
+            resultValueLabel.Size = new Size(13, 15);
+            resultValueLabel.TabIndex = 7;
+            resultValueLabel.Text = "0";
+            toolTip1.SetToolTip(resultValueLabel, "Displays the number of shapes counted based on above criteria.");
             // 
             // resultTextLabel
             // 
-            this.resultTextLabel.AutoSize = true;
-            this.resultTextLabel.Location = new System.Drawing.Point(5, 4);
-            this.resultTextLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 0);
-            this.resultTextLabel.Name = "resultTextLabel";
-            this.resultTextLabel.Size = new System.Drawing.Size(42, 15);
-            this.resultTextLabel.TabIndex = 6;
-            this.resultTextLabel.Text = "Result:";
-            this.toolTip1.SetToolTip(this.resultTextLabel, "Displays the number of shapes counted based on above criteria.");
+            resultTextLabel.AutoSize = true;
+            resultTextLabel.Location = new Point(5, 4);
+            resultTextLabel.Margin = new Padding(3, 4, 3, 0);
+            resultTextLabel.Name = "resultTextLabel";
+            resultTextLabel.Size = new Size(42, 15);
+            resultTextLabel.TabIndex = 6;
+            resultTextLabel.Text = "Result:";
+            toolTip1.SetToolTip(resultTextLabel, "Displays the number of shapes counted based on above criteria.");
             // 
             // checkBoxControlPanel
             // 
-            this.checkBoxControlPanel.Controls.Add(this.label1);
-            this.checkBoxControlPanel.Controls.Add(this.autoPreviewCheckBox);
-            this.checkBoxControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkBoxControlPanel.Location = new System.Drawing.Point(5, 115);
-            this.checkBoxControlPanel.Name = "checkBoxControlPanel";
-            this.checkBoxControlPanel.Size = new System.Drawing.Size(195, 29);
-            this.checkBoxControlPanel.TabIndex = 21;
-            this.toolTip1.SetToolTip(this.checkBoxControlPanel, "Automatically displays the preview of filtered shapes after each Sensitivity sett" +
-        "ing change.\r\n");
+            checkBoxControlPanel.Controls.Add(label1);
+            checkBoxControlPanel.Controls.Add(autoPreviewCheckBox);
+            checkBoxControlPanel.Dock = DockStyle.Top;
+            checkBoxControlPanel.Location = new Point(5, 115);
+            checkBoxControlPanel.Name = "checkBoxControlPanel";
+            checkBoxControlPanel.Size = new Size(195, 29);
+            checkBoxControlPanel.TabIndex = 21;
+            toolTip1.SetToolTip(checkBoxControlPanel, "Automatically displays the preview of filtered shapes after each Sensitivity setting change.\r\n");
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, -177);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(2);
-            this.label1.Size = new System.Drawing.Size(104, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Sensitivity (0-255)";
+            label1.Anchor = AnchorStyles.Left;
+            label1.AutoSize = true;
+            label1.Location = new Point(0, -177);
+            label1.Margin = new Padding(5);
+            label1.Name = "label1";
+            label1.Padding = new Padding(2);
+            label1.Size = new Size(104, 19);
+            label1.TabIndex = 2;
+            label1.Text = "Sensitivity (0-255)";
             // 
             // autoPreviewCheckBox
             // 
-            this.autoPreviewCheckBox.AutoSize = true;
-            this.autoPreviewCheckBox.Location = new System.Drawing.Point(3, 3);
-            this.autoPreviewCheckBox.Name = "autoPreviewCheckBox";
-            this.autoPreviewCheckBox.Size = new System.Drawing.Size(96, 19);
-            this.autoPreviewCheckBox.TabIndex = 8;
-            this.autoPreviewCheckBox.Text = "Auto Preview";
-            this.toolTip1.SetToolTip(this.autoPreviewCheckBox, "Automatically displays the preview of filtered shapes after each Sensitivity sett" +
-        "ing change.\r\n");
-            this.autoPreviewCheckBox.UseVisualStyleBackColor = true;
+            autoPreviewCheckBox.AutoSize = true;
+            autoPreviewCheckBox.Location = new Point(3, 3);
+            autoPreviewCheckBox.Name = "autoPreviewCheckBox";
+            autoPreviewCheckBox.Size = new Size(96, 19);
+            autoPreviewCheckBox.TabIndex = 8;
+            autoPreviewCheckBox.Text = "Auto Preview";
+            toolTip1.SetToolTip(autoPreviewCheckBox, "Automatically displays the preview of filtered shapes after each Sensitivity setting change.\r\n");
+            autoPreviewCheckBox.UseVisualStyleBackColor = true;
             // 
             // maxAreaControlPanel
             // 
-            this.maxAreaControlPanel.Controls.Add(this.numericUpDown3);
-            this.maxAreaControlPanel.Controls.Add(this.label3);
-            this.maxAreaControlPanel.Controls.Add(this.maximumViableAreaSelector);
-            this.maxAreaControlPanel.Controls.Add(this.maximumViableAreaLabel);
-            this.maxAreaControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.maxAreaControlPanel.Location = new System.Drawing.Point(5, 86);
-            this.maxAreaControlPanel.Name = "maxAreaControlPanel";
-            this.maxAreaControlPanel.Size = new System.Drawing.Size(195, 29);
-            this.maxAreaControlPanel.TabIndex = 19;
-            this.toolTip1.SetToolTip(this.maxAreaControlPanel, "Sets the maximum area of a counted shape.\r\nHelpful if there are large features wh" +
-        "ich shouldn\'t be counted.\r\n");
+            maxAreaControlPanel.Controls.Add(numericUpDown3);
+            maxAreaControlPanel.Controls.Add(label3);
+            maxAreaControlPanel.Controls.Add(maximumViableAreaSelector);
+            maxAreaControlPanel.Controls.Add(maximumViableAreaLabel);
+            maxAreaControlPanel.Dock = DockStyle.Top;
+            maxAreaControlPanel.Location = new Point(5, 86);
+            maxAreaControlPanel.Name = "maxAreaControlPanel";
+            maxAreaControlPanel.Size = new Size(195, 29);
+            maxAreaControlPanel.TabIndex = 19;
+            toolTip1.SetToolTip(maxAreaControlPanel, "Sets the maximum area of a counted shape.\r\nHelpful if there are large features which shouldn't be counted.\r\n");
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDown3.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Location = new System.Drawing.Point(109, -105);
-            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(80, 23);
-            this.numericUpDown3.TabIndex = 5;
+            numericUpDown3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            numericUpDown3.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            numericUpDown3.Location = new Point(109, -105);
+            numericUpDown3.Margin = new Padding(3, 3, 3, 2);
+            numericUpDown3.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            numericUpDown3.Name = "numericUpDown3";
+            numericUpDown3.Size = new Size(80, 23);
+            numericUpDown3.TabIndex = 5;
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(0, -105);
-            this.label3.Margin = new System.Windows.Forms.Padding(5);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(2);
-            this.label3.Size = new System.Drawing.Size(104, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Sensitivity (0-255)";
+            label3.Anchor = AnchorStyles.Left;
+            label3.AutoSize = true;
+            label3.Location = new Point(0, -105);
+            label3.Margin = new Padding(5);
+            label3.Name = "label3";
+            label3.Padding = new Padding(2);
+            label3.Size = new Size(104, 19);
+            label3.TabIndex = 2;
+            label3.Text = "Sensitivity (0-255)";
             // 
             // maximumViableAreaSelector
             // 
-            this.maximumViableAreaSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maximumViableAreaSelector.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.maximumViableAreaSelector.Location = new System.Drawing.Point(115, 3);
-            this.maximumViableAreaSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
-            this.maximumViableAreaSelector.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.maximumViableAreaSelector.Name = "maximumViableAreaSelector";
-            this.maximumViableAreaSelector.Size = new System.Drawing.Size(80, 23);
-            this.maximumViableAreaSelector.TabIndex = 13;
-            this.toolTip1.SetToolTip(this.maximumViableAreaSelector, "Sets the maximum area of a counted shape.\r\nHelpful if there are large features wh" +
-        "ich shouldn\'t be counted.\r\n");
-            this.maximumViableAreaSelector.Value = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.maximumViableAreaSelector.ValueChanged += new System.EventHandler(this.maximumViableAreaSelector_ValueChanged);
+            maximumViableAreaSelector.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            maximumViableAreaSelector.Increment = new decimal(new int[] { 50, 0, 0, 0 });
+            maximumViableAreaSelector.Location = new Point(115, 3);
+            maximumViableAreaSelector.Margin = new Padding(3, 3, 3, 2);
+            maximumViableAreaSelector.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            maximumViableAreaSelector.Name = "maximumViableAreaSelector";
+            maximumViableAreaSelector.Size = new Size(80, 23);
+            maximumViableAreaSelector.TabIndex = 13;
+            toolTip1.SetToolTip(maximumViableAreaSelector, "Sets the maximum area of a counted shape.\r\nHelpful if there are large features which shouldn't be counted.\r\n");
+            maximumViableAreaSelector.Value = new decimal(new int[] { 999999, 0, 0, 0 });
+            maximumViableAreaSelector.ValueChanged += maximumViableAreaSelector_ValueChanged;
             // 
             // maximumViableAreaLabel
             // 
-            this.maximumViableAreaLabel.AutoSize = true;
-            this.maximumViableAreaLabel.Location = new System.Drawing.Point(3, 5);
-            this.maximumViableAreaLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.maximumViableAreaLabel.Name = "maximumViableAreaLabel";
-            this.maximumViableAreaLabel.Size = new System.Drawing.Size(87, 15);
-            this.maximumViableAreaLabel.TabIndex = 12;
-            this.maximumViableAreaLabel.Text = "Maximum area";
-            this.toolTip1.SetToolTip(this.maximumViableAreaLabel, "Sets the maximum area of a counted shape.\r\nHelpful if there are large features wh" +
-        "ich shouldn\'t be counted.\r\n");
+            maximumViableAreaLabel.AutoSize = true;
+            maximumViableAreaLabel.Location = new Point(3, 5);
+            maximumViableAreaLabel.Margin = new Padding(0);
+            maximumViableAreaLabel.Name = "maximumViableAreaLabel";
+            maximumViableAreaLabel.Size = new Size(87, 15);
+            maximumViableAreaLabel.TabIndex = 12;
+            maximumViableAreaLabel.Text = "Maximum area";
+            toolTip1.SetToolTip(maximumViableAreaLabel, "Sets the maximum area of a counted shape.\r\nHelpful if there are large features which shouldn't be counted.\r\n");
             // 
             // minAreaControlPanel
             // 
-            this.minAreaControlPanel.Controls.Add(this.minimumViableAreaSelector);
-            this.minAreaControlPanel.Controls.Add(this.minimumViableAreaLabel);
-            this.minAreaControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.minAreaControlPanel.Location = new System.Drawing.Point(5, 57);
-            this.minAreaControlPanel.Name = "minAreaControlPanel";
-            this.minAreaControlPanel.Size = new System.Drawing.Size(195, 29);
-            this.minAreaControlPanel.TabIndex = 18;
-            this.toolTip1.SetToolTip(this.minAreaControlPanel, "Sets the minimum area of counted shapes.\r\nHelpful if there are many small feature" +
-        "s that should be ignored.\r\n\r\n");
+            minAreaControlPanel.Controls.Add(minimumViableAreaSelector);
+            minAreaControlPanel.Controls.Add(minimumViableAreaLabel);
+            minAreaControlPanel.Dock = DockStyle.Top;
+            minAreaControlPanel.Location = new Point(5, 57);
+            minAreaControlPanel.Name = "minAreaControlPanel";
+            minAreaControlPanel.Size = new Size(195, 29);
+            minAreaControlPanel.TabIndex = 18;
+            toolTip1.SetToolTip(minAreaControlPanel, "Sets the minimum area of counted shapes.\r\nHelpful if there are many small features that should be ignored.\r\n\r\n");
             // 
             // minimumViableAreaSelector
             // 
-            this.minimumViableAreaSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minimumViableAreaSelector.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.minimumViableAreaSelector.Location = new System.Drawing.Point(115, 3);
-            this.minimumViableAreaSelector.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
-            this.minimumViableAreaSelector.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.minimumViableAreaSelector.Name = "minimumViableAreaSelector";
-            this.minimumViableAreaSelector.Size = new System.Drawing.Size(80, 23);
-            this.minimumViableAreaSelector.TabIndex = 11;
-            this.toolTip1.SetToolTip(this.minimumViableAreaSelector, "Sets the minimum area of counted shapes.\r\nHelpful if there are many small feature" +
-        "s that should be ignored.\r\n\r\n");
-            this.minimumViableAreaSelector.ValueChanged += new System.EventHandler(this.minimumViableAreaSelector_ValueChanged);
+            minimumViableAreaSelector.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            minimumViableAreaSelector.Increment = new decimal(new int[] { 50, 0, 0, 0 });
+            minimumViableAreaSelector.Location = new Point(115, 3);
+            minimumViableAreaSelector.Margin = new Padding(3, 3, 3, 2);
+            minimumViableAreaSelector.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            minimumViableAreaSelector.Name = "minimumViableAreaSelector";
+            minimumViableAreaSelector.Size = new Size(80, 23);
+            minimumViableAreaSelector.TabIndex = 11;
+            toolTip1.SetToolTip(minimumViableAreaSelector, "Sets the minimum area of counted shapes.\r\nHelpful if there are many small features that should be ignored.\r\n\r\n");
+            minimumViableAreaSelector.ValueChanged += minimumViableAreaSelector_ValueChanged;
             // 
             // minimumViableAreaLabel
             // 
-            this.minimumViableAreaLabel.AutoSize = true;
-            this.minimumViableAreaLabel.Location = new System.Drawing.Point(3, 5);
-            this.minimumViableAreaLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.minimumViableAreaLabel.Name = "minimumViableAreaLabel";
-            this.minimumViableAreaLabel.Size = new System.Drawing.Size(85, 15);
-            this.minimumViableAreaLabel.TabIndex = 10;
-            this.minimumViableAreaLabel.Text = "Minimum area";
-            this.toolTip1.SetToolTip(this.minimumViableAreaLabel, "Sets the minimum area of counted shapes.\r\nHelpful if there are many small feature" +
-        "s that should be ignored.\r\n\r\n");
+            minimumViableAreaLabel.AutoSize = true;
+            minimumViableAreaLabel.Location = new Point(3, 5);
+            minimumViableAreaLabel.Margin = new Padding(0);
+            minimumViableAreaLabel.Name = "minimumViableAreaLabel";
+            minimumViableAreaLabel.Size = new Size(85, 15);
+            minimumViableAreaLabel.TabIndex = 10;
+            minimumViableAreaLabel.Text = "Minimum area";
+            toolTip1.SetToolTip(minimumViableAreaLabel, "Sets the minimum area of counted shapes.\r\nHelpful if there are many small features that should be ignored.\r\n\r\n");
             // 
             // resetSettingButton
             // 
-            this.resetSettingButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.resetSettingButton.Location = new System.Drawing.Point(5, 598);
-            this.resetSettingButton.Name = "resetSettingButton";
-            this.resetSettingButton.Size = new System.Drawing.Size(195, 26);
-            this.resetSettingButton.TabIndex = 1;
-            this.resetSettingButton.Text = "Restore default";
-            this.toolTip1.SetToolTip(this.resetSettingButton, "Restores the settings to their default values.");
-            this.resetSettingButton.UseVisualStyleBackColor = true;
-            this.resetSettingButton.Click += new System.EventHandler(this.resetSettingButton_Click);
+            resetSettingButton.Dock = DockStyle.Bottom;
+            resetSettingButton.Location = new Point(5, 598);
+            resetSettingButton.Name = "resetSettingButton";
+            resetSettingButton.Size = new Size(195, 26);
+            resetSettingButton.TabIndex = 1;
+            resetSettingButton.Text = "Restore default";
+            toolTip1.SetToolTip(resetSettingButton, "Restores the settings to their default values.");
+            resetSettingButton.UseVisualStyleBackColor = true;
+            resetSettingButton.Click += resetSettingButton_Click;
             // 
             // sensitivityControlPanel
             // 
-            this.sensitivityControlPanel.Controls.Add(this.thresholdSelector);
-            this.sensitivityControlPanel.Controls.Add(this.thresholdLabel);
-            this.sensitivityControlPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sensitivityControlPanel.Location = new System.Drawing.Point(5, 28);
-            this.sensitivityControlPanel.Name = "sensitivityControlPanel";
-            this.sensitivityControlPanel.Size = new System.Drawing.Size(195, 29);
-            this.sensitivityControlPanel.TabIndex = 16;
-            this.toolTip1.SetToolTip(this.sensitivityControlPanel, resources.GetString("sensitivityControlPanel.ToolTip"));
+            sensitivityControlPanel.Controls.Add(thresholdSelector);
+            sensitivityControlPanel.Controls.Add(thresholdLabel);
+            sensitivityControlPanel.Dock = DockStyle.Top;
+            sensitivityControlPanel.Location = new Point(5, 28);
+            sensitivityControlPanel.Name = "sensitivityControlPanel";
+            sensitivityControlPanel.Size = new Size(195, 29);
+            sensitivityControlPanel.TabIndex = 16;
+            toolTip1.SetToolTip(sensitivityControlPanel, resources.GetString("sensitivityControlPanel.ToolTip"));
             // 
             // importPictureButton
             // 
-            this.importPictureButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.importPictureButton.Location = new System.Drawing.Point(5, 5);
-            this.importPictureButton.Name = "importPictureButton";
-            this.importPictureButton.Size = new System.Drawing.Size(195, 23);
-            this.importPictureButton.TabIndex = 23;
-            this.importPictureButton.Text = "Import Picture";
-            this.importPictureButton.UseVisualStyleBackColor = true;
-            this.importPictureButton.Click += new System.EventHandler(this.importPictureButton_Click);
+            importPictureButton.Dock = DockStyle.Top;
+            importPictureButton.Location = new Point(5, 5);
+            importPictureButton.Name = "importPictureButton";
+            importPictureButton.Size = new Size(195, 23);
+            importPictureButton.TabIndex = 23;
+            importPictureButton.Text = "Import Picture";
+            importPictureButton.UseVisualStyleBackColor = true;
+            importPictureButton.Click += importPictureButton_Click;
             // 
             // toolTip1
             // 
-            this.toolTip1.AutoPopDelay = 999999;
-            this.toolTip1.InitialDelay = 550;
-            this.toolTip1.ReshowDelay = 110;
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            toolTip1.AutoPopDelay = 999999;
+            toolTip1.InitialDelay = 550;
+            toolTip1.ReshowDelay = 110;
+            toolTip1.ToolTipIcon = ToolTipIcon.Info;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.pictureBox1);
-            this.panel3.Controls.Add(this.controlPanel);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1013, 629);
-            this.panel3.TabIndex = 8;
+            panel3.Controls.Add(tabControl1);
+            panel3.Controls.Add(controlPanel);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1013, 629);
+            panel3.TabIndex = 8;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(205, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(808, 629);
+            tabControl1.TabIndex = 24;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(originalPictureBox);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(800, 601);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Original Image";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(processedPictureBox);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(800, 601);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Processed Image";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // processedPictureBox
+            // 
+            processedPictureBox.Dock = DockStyle.Fill;
+            processedPictureBox.Location = new Point(3, 3);
+            processedPictureBox.Name = "processedPictureBox";
+            processedPictureBox.Size = new Size(794, 595);
+            processedPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            processedPictureBox.TabIndex = 0;
+            processedPictureBox.TabStop = false;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1013, 629);
-            this.Controls.Add(this.panel3);
-            this.MinimumSize = new System.Drawing.Size(480, 300);
-            this.Name = "MainWindow";
-            this.Text = "Dyslokacjowo";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thresholdSelector)).EndInit();
-            this.controlPanel.ResumeLayout(false);
-            this.resultControlPanel.ResumeLayout(false);
-            this.resultControlPanel.PerformLayout();
-            this.checkBoxControlPanel.ResumeLayout(false);
-            this.checkBoxControlPanel.PerformLayout();
-            this.maxAreaControlPanel.ResumeLayout(false);
-            this.maxAreaControlPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maximumViableAreaSelector)).EndInit();
-            this.minAreaControlPanel.ResumeLayout(false);
-            this.minAreaControlPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.minimumViableAreaSelector)).EndInit();
-            this.sensitivityControlPanel.ResumeLayout(false);
-            this.sensitivityControlPanel.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1013, 629);
+            Controls.Add(panel3);
+            MinimumSize = new Size(480, 300);
+            Name = "MainWindow";
+            Text = "Dyslokacjowo";
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)originalPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)thresholdSelector).EndInit();
+            controlPanel.ResumeLayout(false);
+            resultControlPanel.ResumeLayout(false);
+            resultControlPanel.PerformLayout();
+            checkBoxControlPanel.ResumeLayout(false);
+            checkBoxControlPanel.PerformLayout();
+            maxAreaControlPanel.ResumeLayout(false);
+            maxAreaControlPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)maximumViableAreaSelector).EndInit();
+            minAreaControlPanel.ResumeLayout(false);
+            minAreaControlPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)minimumViableAreaSelector).EndInit();
+            sensitivityControlPanel.ResumeLayout(false);
+            sensitivityControlPanel.PerformLayout();
+            panel3.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)processedPictureBox).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
-        private PictureBox pictureBox1;
+        private PictureBox originalPictureBox;
         private Label thresholdLabel;
         private NumericUpDown thresholdSelector;
         private Label resultTextLabel;
@@ -477,5 +490,9 @@ namespace DysklokacjowoWinForms
         private Button importPictureButton;
         private Panel checkBoxControlPanel;
         private CheckBox autoPreviewCheckBox;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private PictureBox processedPictureBox;
     }
 }

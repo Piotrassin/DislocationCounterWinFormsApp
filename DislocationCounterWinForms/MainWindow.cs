@@ -12,6 +12,7 @@ namespace DysklokacjowoWinForms
         private Image<Bgr, byte>? inputImage;
         private Image<Gray, byte>? binaryImage;
         private Image<Bgr, byte>? outputImage;
+        private bool tabSwitchingEnabled = true;
 
         public MainWindow(IDislocationDetectionService dislocationDetectionService)
         {
@@ -41,6 +42,12 @@ namespace DysklokacjowoWinForms
         }
         private void previewFilteredShapesButton_Click(object sender, EventArgs e)
         {
+            PreviewFilteredImage();
+            showProcessedImageTab();
+        }
+
+        private void PreviewFilteredImage()
+        {
             if (inputImage is null)
             {
                 return;
@@ -49,7 +56,7 @@ namespace DysklokacjowoWinForms
             try
             {
                 binaryImage = dislocationDetectionService.PreviewGrayScaleImage(inputImage, (int)thresholdSelector.Value);
-                pictureBox1.Image = binaryImage.ToBitmap();
+                processedPictureBox.Image = binaryImage.ToBitmap();
             }
             catch (Exception ex)
             {
@@ -59,8 +66,13 @@ namespace DysklokacjowoWinForms
 
         private void countShapesButton_Click(object sender, EventArgs e)
         {
-            this.previewFilteredShapesButton_Click(sender, e);
+            PreviewFilteredImage();
+            CountShapes();
+            showProcessedImageTab();
+        }
 
+        private void CountShapes()
+        {
             (var numOfDislocations, outputImage) = dislocationDetectionService.CountShapes(
                 binaryImage,
                 outputImage,
@@ -68,12 +80,15 @@ namespace DysklokacjowoWinForms
                 (double)maximumViableAreaSelector.Value);
 
             resultValueLabel.Text = numOfDislocations.ToString();
-            pictureBox1.Image = outputImage.ToBitmap();
+            processedPictureBox.Image = outputImage.ToBitmap();
         }
 
         private void resetSettingButton_Click(object sender, EventArgs e)
         {
+            //temporarily block switching tabs when resetting settings due to auto preview enabled
+            tabSwitchingEnabled = false;
             resetSettings();
+            tabSwitchingEnabled = true;
         }
 
         private void defaultExceptionHandler(Exception ex)
@@ -104,7 +119,7 @@ namespace DysklokacjowoWinForms
                 if (dialog.ShowDialog() is DialogResult.OK)
                 {
                     inputImage = new Image<Bgr, byte>(dialog.FileName);
-                    pictureBox1.Image = inputImage.ToBitmap();
+                    originalPictureBox.Image = inputImage.ToBitmap();
                 }
             }
             catch (Exception ex)
@@ -112,20 +127,33 @@ namespace DysklokacjowoWinForms
                 defaultExceptionHandler(ex);
             }
 
-            
-        }
-
-        private void scaleInputDialogBox()
-        {
-
+            showOriginalImageTab();
         }
 
         private void thresholdSelector_ValueChanged(object sender, EventArgs e)
         {
-            if (autoPreviewCheckBox.Checked)
+            if (!autoPreviewCheckBox.Checked)
             {
-                previewFilteredShapesButton_Click(sender, e);
+                return;
+            }
+
+            PreviewFilteredImage();
+
+            if (tabSwitchingEnabled)
+            {
+                showProcessedImageTab();
             }
         }
+
+        private void showProcessedImageTab()
+        {
+            tabControl1.SelectTab(1);
+        }
+
+        private void showOriginalImageTab()
+        {
+            tabControl1.SelectTab(0);
+        }
+
     }
 }
