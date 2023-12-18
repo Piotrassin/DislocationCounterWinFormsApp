@@ -18,11 +18,28 @@ namespace DysklokacjowoWinForms
         {
             InitializeComponent();
             this.dislocationDetectionService = dislocationDetectionService;
+            AllowDrop = true;
+            DragEnter += new DragEventHandler(Form1_DragEnter);
+            DragDrop += new DragEventHandler(Form1_DragDrop);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             resetSettings();
+        }
+
+        private void resetSettings()
+        {
+            thresholdSelector.Value = ConfigConstants.DefaultThresholdValue;
+
+            minimumViableAreaSelector.Minimum = ConfigConstants.MinimumViableAreaValue;
+            minimumViableAreaSelector.Maximum = ConfigConstants.MaximumViableAreaValue;
+
+            maximumViableAreaSelector.Minimum = ConfigConstants.MinimumViableAreaValue;
+            maximumViableAreaSelector.Maximum = ConfigConstants.MaximumViableAreaValue;
+
+            minimumViableAreaSelector.Value = ConfigConstants.DefaultMinViableAreaValue;
+            maximumViableAreaSelector.Value = ConfigConstants.DefaultMaxViableAreaValue;
         }
 
         private void minimumViableAreaSelector_ValueChanged(object sender, EventArgs e)
@@ -91,35 +108,26 @@ namespace DysklokacjowoWinForms
             tabSwitchingEnabled = true;
         }
 
-        private void defaultExceptionHandler(Exception ex)
+        private void defaultExceptionHandler(Exception? ex, string? additionalMsg = "")
         {
-            MessageBox.Show(ex.Message.ToString(), "Error");
+            if (additionalMsg.Length > 0)
+            {
+                 additionalMsg += "\n";
+            }
+            MessageBox.Show($"{additionalMsg}{ex?.Message}", "Error");
         }
 
-        private void resetSettings()
-        {
-            thresholdSelector.Value = ConfigConstants.DefaultThresholdValue;
-
-            minimumViableAreaSelector.Minimum = ConfigConstants.MinimumViableAreaValue;
-            minimumViableAreaSelector.Maximum = ConfigConstants.MaximumViableAreaValue;
-
-            maximumViableAreaSelector.Minimum = ConfigConstants.MinimumViableAreaValue;
-            maximumViableAreaSelector.Maximum = ConfigConstants.MaximumViableAreaValue;
-
-            minimumViableAreaSelector.Value = ConfigConstants.DefaultMinViableAreaValue;
-            maximumViableAreaSelector.Value = ConfigConstants.DefaultMaxViableAreaValue;
-        }
 
         private void importPictureButton_Click(object sender, EventArgs e)
         {
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "Image Files (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp;|All Files (*.*)|*.*;";
+                dialog.Filter = "Image Files (*.jpg, *.png, *.bmp, *.webp, *.gif)|*.jpg;*.png;*.bmp;*.webp;*.gif;|All Files (*.*)|*.*;";
                 if (dialog.ShowDialog() is DialogResult.OK)
                 {
                     inputImage = new Image<Bgr, byte>(dialog.FileName);
-                    originalPictureBox.Image = inputImage.ToBitmap();
+                    setOriginalImage(inputImage.ToBitmap());
                 }
             }
             catch (Exception ex)
@@ -153,6 +161,47 @@ namespace DysklokacjowoWinForms
         private void showOriginalImageTab()
         {
             tabControl1.SelectTab(0);
+        }
+        private void Form1_DragEnter(object? sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void Form1_DragDrop(object? sender, DragEventArgs e)
+        {
+            string[]? filePaths = (string[]?)e.Data?.GetData(DataFormats.FileDrop);
+            if(filePaths == null)
+            {
+                return;
+            }
+            if (filePaths.Length > 1)
+            {
+                defaultExceptionHandler(null, "Drag and drop only one file at a time");
+                return;
+            }
+            try
+            {
+                LoadImageFromFile(filePaths[0]);
+            }
+            catch (Exception ex)
+            {
+                defaultExceptionHandler(ex, "Unsupported file type.");
+            }
+        }
+
+        private void LoadImageFromFile(string path)
+        {
+            inputImage = new Image<Bgr, byte>(path);
+            setOriginalImage(inputImage.ToBitmap());
+            showOriginalImageTab();
+        }
+
+        private void setOriginalImage(Image img)
+        {
+            originalPictureBox.Image = img;
         }
 
     }
