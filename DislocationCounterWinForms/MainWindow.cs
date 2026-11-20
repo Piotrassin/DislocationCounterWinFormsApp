@@ -1,17 +1,11 @@
 using DislocationCounterWinForms;
 using DislocationCounterWinForms.DislocationDetectionService;
-using Emgu.CV;
-using Emgu.CV.Structure;
 
 namespace DysklokacjowoWinForms
 {
     public partial class MainWindow : Form
     {
         private readonly IDislocationDetectionService dislocationDetectionService;
-
-        private Image<Bgr, byte>? inputImage;
-        private Image<Gray, byte>? binaryImage;
-        private Image<Bgr, byte>? outputImage;
         private bool tabSwitchingEnabled = true;
 
         public MainWindow(IDislocationDetectionService dislocationDetectionService)
@@ -57,47 +51,47 @@ namespace DysklokacjowoWinForms
                 minimumViableAreaSelector.Value = maximumViableAreaSelector.Value;
             }
         }
-        private void previewFilteredShapesButton_Click(object sender, EventArgs e)
-        {
-            PreviewFilteredImage();
-            showProcessedImageTab();
-        }
 
-        private void PreviewFilteredImage()
+        private void PreviewImage()
         {
-            if (inputImage is null)
-            {
-                return;
-            }
-
             try
             {
-                binaryImage = dislocationDetectionService.PreviewGrayScaleImage(inputImage, (int)thresholdSelector.Value);
-                processedPictureBox.Image = binaryImage.ToBitmap();
+                processedPictureBox.Image = dislocationDetectionService.PreviewFilteredImage(GetThresholdSelectorValue());
+                showProcessedImageTab();
+            }
+            catch (NullReferenceException e1)
+            {
+                defaultExceptionHandler(null, "First, load or drag and drop an image");
             }
             catch (Exception ex)
             {
                 defaultExceptionHandler(ex);
             }
         }
+        private int GetThresholdSelectorValue()
+        {
+            return (int)thresholdSelector.Value;
+        }
+
+        private void previewFilteredShapesButton_Click(object sender, EventArgs e)
+        {
+            PreviewImage();
+        }
 
         private void countShapesButton_Click(object sender, EventArgs e)
         {
-            PreviewFilteredImage();
+            PreviewImage();
             CountShapes();
-            showProcessedImageTab();
         }
 
         private void CountShapes()
         {
-            (var numOfDislocations, outputImage) = dislocationDetectionService.CountShapes(
-                binaryImage,
-                outputImage,
+            (var numOfDislocations, var img) = dislocationDetectionService.CountAndDrawContours(
                 (double)minimumViableAreaSelector.Value,
                 (double)maximumViableAreaSelector.Value);
 
             resultValueLabel.Text = numOfDislocations.ToString();
-            processedPictureBox.Image = outputImage.ToBitmap();
+            processedPictureBox.Image = img;
         }
 
         private void resetSettingButton_Click(object sender, EventArgs e)
@@ -108,7 +102,7 @@ namespace DysklokacjowoWinForms
             tabSwitchingEnabled = true;
         }
 
-        private void defaultExceptionHandler(Exception? ex, string? additionalMsg = "")
+        public void defaultExceptionHandler(Exception? ex, string? additionalMsg = "")
         {
             if (additionalMsg.Length > 0)
             {
@@ -126,8 +120,9 @@ namespace DysklokacjowoWinForms
                 dialog.Filter = "Image Files (*.jpg, *.png, *.bmp, *.webp, *.gif)|*.jpg;*.png;*.bmp;*.webp;*.gif;|All Files (*.*)|*.*;";
                 if (dialog.ShowDialog() is DialogResult.OK)
                 {
-                    inputImage = new Image<Bgr, byte>(dialog.FileName);
-                    setOriginalImage(inputImage.ToBitmap());
+                    var image = dislocationDetectionService.PopulateInputImage(dialog.FileName);
+                    setOriginalImage(image);
+                    showOriginalImageTab();
                 }
             }
             catch (Exception ex)
@@ -135,21 +130,29 @@ namespace DysklokacjowoWinForms
                 defaultExceptionHandler(ex);
             }
 
-            showOriginalImageTab();
         }
 
-        private void thresholdSelector_ValueChanged(object sender, EventArgs e)
+        private void Form1_DragDrop(object? sender, DragEventArgs e)
         {
-            if (!autoPreviewCheckBox.Checked)
+            string[]? filePaths = (string[]?)e.Data?.GetData(DataFormats.FileDrop);
+            if (filePaths == null)
             {
                 return;
             }
-
-            PreviewFilteredImage();
-
-            if (tabSwitchingEnabled)
+            if (filePaths.Length > 1)
             {
-                showProcessedImageTab();
+                defaultExceptionHandler(null, "Drag and drop only one file at a time");
+                return;
+            }
+            try
+            {
+                var image = dislocationDetectionService.LoadImageFromFile(filePaths[0]);
+                setOriginalImage(image);
+                showOriginalImageTab();
+            }
+            catch (Exception ex)
+            {
+                defaultExceptionHandler(ex, "Unsupported file type.");
             }
         }
 
@@ -162,6 +165,17 @@ namespace DysklokacjowoWinForms
         {
             tabControl1.SelectTab(0);
         }
+
+        private void setOriginalImage(Image img)
+        {
+            originalPictureBox.Image = img;
+        }
+
+        private void setProcessedImage(Image img)
+        {
+            processedPictureBox.Image = img;
+        }
+
         private void Form1_DragEnter(object? sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -170,39 +184,26 @@ namespace DysklokacjowoWinForms
             }
         }
 
-        private void Form1_DragDrop(object? sender, DragEventArgs e)
+        private void thresholdSelector_ValueChanged(object sender, EventArgs e)
         {
-            string[]? filePaths = (string[]?)e.Data?.GetData(DataFormats.FileDrop);
-            if(filePaths == null)
+            if (!autoPreviewCheckBox.Checked)
             {
-                return;
-            }
-            if (filePaths.Length > 1)
-            {
-                defaultExceptionHandler(null, "Drag and drop only one file at a time");
                 return;
             }
             try
             {
-                LoadImageFromFile(filePaths[0]);
+                var preview = dislocationDetectionService.PreviewFilteredImage(GetThresholdSelectorValue());
+                setProcessedImage(preview);
             }
             catch (Exception ex)
             {
-                defaultExceptionHandler(ex, "Unsupported file type.");
+                defaultExceptionHandler(ex);
+            }
+           
+            if (tabSwitchingEnabled)
+            {
+                showProcessedImageTab();
             }
         }
-
-        private void LoadImageFromFile(string path)
-        {
-            inputImage = new Image<Bgr, byte>(path);
-            setOriginalImage(inputImage.ToBitmap());
-            showOriginalImageTab();
-        }
-
-        private void setOriginalImage(Image img)
-        {
-            originalPictureBox.Image = img;
-        }
-
     }
 }

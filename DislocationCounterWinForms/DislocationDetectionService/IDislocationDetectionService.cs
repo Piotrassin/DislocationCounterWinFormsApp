@@ -5,7 +5,12 @@ namespace DislocationCounterWinForms.DislocationDetectionService
 {
     public interface IDislocationDetectionService
     {
-        (int, Image<Bgr, byte>) CountShapes(Image<Gray, byte> binaryImage, Image<Bgr, byte> outputImage, double minimumViableArea, double maximumViableArea, double epsilon = 0.04);
-        Image<Gray, byte> PreviewGrayScaleImage(Image<Bgr, byte> input, int sensitivityValue);
+        (int, Bitmap) CountAndDrawContours(double minimumViableArea, double maximumViableArea, double epsilon = 0.04);
+        Bitmap PreviewFilteredImage(int thresholdValue);
+        Bitmap GetInputImage();
+        Bitmap GetBinaryImage();
+        Bitmap GetOutputImage();
+        Bitmap PopulateInputImage(string path);
+        Bitmap LoadImageFromFile(string path);
     }
 }
